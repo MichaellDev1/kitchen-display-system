@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ProductInterface } from '../../types/type'
 
 const listProducts = [
     {
@@ -19,6 +18,24 @@ const listProducts = [
         category: 'bebidas',
         price: 7
     },
+    {
+        name: 'Pera',
+        category: 'desayunos',
+        price: 3
+    }, {
+        name: 'Manzana',
+        category: 'desayunos',
+        price: 7
+    },
+    {
+        name: 'Naranja',
+        category: 'desayunos',
+        price: 3
+    }, {
+        name: 'Frutilla',
+        category: 'desayunos',
+        price: 7
+    },
 ]
 
 interface Props {
@@ -27,8 +44,14 @@ interface Props {
     handleProductSelected: Function
 }
 
+interface Filter {
+    name: string;
+    category: string;
+    price: number;
+}
+
 export default function ListProducts({ categorySelected, setSelected, handleProductSelected }: Props) {
-    const [products, setProducts] = useState<Array<ProductInterface>>()
+    const [products, setProducts] = useState<Filter[]>()
 
     useEffect(() => {
         const filterProduct = listProducts.filter(product => product.category == categorySelected)

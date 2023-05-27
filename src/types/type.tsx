@@ -24,7 +24,6 @@ export interface ORdes {
     canceled: boolean
 }
 
-
 export interface Initial {
     ordes: Order[] | []
 }

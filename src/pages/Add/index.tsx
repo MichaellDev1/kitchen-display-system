@@ -5,6 +5,7 @@ import ListProducts from '../../components/ListProducts'
 import { ProductInterface } from '../../types/type'
 import { useDispatch } from 'react-redux'
 import { addOrder } from '../../redux/orderSlice'
+import ButtonBack from '../../components/ButtonBack'
 
 const ContentAdd = styled.div`
   width: 100%;
@@ -15,22 +16,10 @@ const ContentAdd = styled.div`
   padding: 20px 100px;
 `
 
-interface Product {
-  name: string
-  cantidad: number
-  comments: string
-  state: string
-}
-
-interface ProductOurner {
-  peoples: number
-  products: Array<Product>
-  mesa: number
-}
-
 export default function Add() {
+  //Estados
   const [categorySelected, setSelected] = useState<string | null>(null)
-  const [productsSelected, setProducts] = useState<Array<ProductInterface | null>>([])
+  const [productsSelected, setProducts] = useState<Array<ProductInterface>>([])
   const [comment, setComment] = useState<string>('')
 
   const dispath = useDispatch()
@@ -47,7 +36,7 @@ export default function Add() {
       productsSelected[verifyRepeat].price += productsSelected[verifyRepeat].price
       setProducts([...productsSelected])
     } else {
-      setProducts(lastState => [...lastState, { cantidad: 1, ...produc }])
+      setProducts(lastState => [...lastState, { ...produc, cantidad: 1, terminate: false }])
     }
   }
 
@@ -63,19 +52,19 @@ export default function Add() {
     }
   }
 
-  //Cancelamiento del pedido, eliminando los productos
+  //Cancelamiento de la orden, eliminando los productos
   const handleCancelOrder = () => {
     setProducts([])
     setSelected(null)
   }
 
   //Obtiete el valor del comentario
-  const handleChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeComment = (e: React.ChangeEvent<HTMLInputElement>) =>
     setComment(e.target.value)
-  }
 
   return (
     <ContentAdd>
+      <ButtonBack path='/' />
       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
         <div>
           {categorySelected ? <ListProducts categorySelected={categorySelected} handleProductSelected={handleProductSelected} setSelected={setSelected} /> : <ListCategories handleCategorySelected={handleSelected} />}

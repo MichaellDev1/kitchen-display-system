@@ -2,19 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Initial, Order } from "../types/type";
 import { v4 as uuidv4 } from 'uuid'
 
-
 const initialState: Initial = {
   ordes: []
 }
 
 //Estas 3 funciones en donde accedemos al localStorage tienen la funcionalidad de no repetir codigo
+//1
 const getLocalFunctionRepeat = (key: string) => {
   return JSON.parse(window.localStorage.getItem('ordes')) || []
 }
+//2
 const setLocalFunctionRepeat = (key: string, update: Order[]): void => {
   window.localStorage.setItem('ordes', JSON.stringify(update))
 }
 
+//3
 //Funcionalidad que permite encomntrar el elemento o orden que querramos actualizar/eliminar
 const deleteUpdateRepeat = (actions: any) => {
   const update = getLocalFunctionRepeat('ordes')
@@ -22,7 +24,6 @@ const deleteUpdateRepeat = (actions: any) => {
   const updateElement = update[findIndex]
   return { update, findIndex, updateElement }
 }
-
 
 const orderSlice = createSlice({
   name: "user",
@@ -93,9 +94,17 @@ const orderSlice = createSlice({
       update[findIndex] = updateElement
       setLocalFunctionRepeat('ordes', update)
       state.ordes = update
+    },
+    updateProductOrder: (state, actions) => {
+      const { findIndex, update, updateElement } = deleteUpdateRepeat({ payload: actions.payload.order })
+
+      update[findIndex].products[actions.payload.inx].terminate = !actions.payload.state
+      setLocalFunctionRepeat('ordes', update)
+      state.ordes = update
     }
   },
+
 })
 
-export const { addOrder, deleteOrder, addAllOrder, updateState, cancelOrder } = orderSlice.actions;
+export const { addOrder, deleteOrder, addAllOrder, updateState, cancelOrder, updateProductOrder } = orderSlice.actions;
 export default orderSlice.reducer
