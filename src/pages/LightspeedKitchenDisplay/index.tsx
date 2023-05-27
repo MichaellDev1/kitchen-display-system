@@ -52,7 +52,6 @@ const ButtonFilter = styled.button`
    font-size: 23px;
    line-height: 1;
    padding: 5px 10px;
-   border-radius: 10px;
    cursor: pointer;
    display: flex;
    color: var(--text-color);
@@ -121,7 +120,6 @@ export default function LightspeedKitchenDisplay() {
       }
       <div style={{ display: 'flex', gap: '4px' }}>
         <ButtonBack path='/' />
-        <ButtonFilter><FiPlus /></ButtonFilter>
         <ButtonFilter onClick={handleShowMenuFilter}><BsFilter /><span>Filtros</span></ButtonFilter>
       </div>
     </div>

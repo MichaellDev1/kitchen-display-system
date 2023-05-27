@@ -7,13 +7,28 @@ import { useDispatch } from 'react-redux'
 import { addOrder } from '../../redux/orderSlice'
 import ButtonBack from '../../components/ButtonBack'
 
+import { HiArrowNarrowLeft } from 'react-icons/hi'
+
 const ContentAdd = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 100px;
+  flex-direction: column;
+`
+const Title = styled.h4`
+  color: var(--text-color);
+  font-size: 24px;
+`
+
+const ButtonDeselect = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
 `
 
 export default function Add() {
@@ -64,24 +79,59 @@ export default function Add() {
 
   return (
     <ContentAdd>
-      <ButtonBack path='/' />
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <div>
-          {categorySelected ? <ListProducts categorySelected={categorySelected} handleProductSelected={handleProductSelected} setSelected={setSelected} /> : <ListCategories handleCategorySelected={handleSelected} />}
+      <div style={{ width: '100%' }}>
+        <div style={{ marginBottom: '10px' }}>
+          <ButtonBack path='/' />
         </div>
 
-        <div>
-          <input type="text" placeholder='Comentario...' value={comment} onChange={handleChangeComment} />
-        </div>
-        <div>
-          {productsSelected?.map(res => <li key={res.name} style={{ display: 'flex', gap: '5px' }}><span>X{res?.cantidad}</span><span>{res.name}</span></li>)}
-          <span>${productsSelected?.reduce((a, e) => a + e.price, 0)}</span>
-          <div>
-            <button onClick={() => handleCancelOrder()}>Cancelar</button>
-            <button onClick={() => handleSendOrder()}>Enviar</button>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fff', padding: '20px' }}>
+
+          <div style={{ flexGrow: '1', borderRight: '1px solid rgb(231 231 231)', padding: '20px' }}>
+            {categorySelected
+              ? <div>
+                <div style={{ minHeight: '25px' }}>
+                  <ButtonDeselect onClick={() => setSelected(null)}><HiArrowNarrowLeft /></ButtonDeselect>
+                </div>
+                <Title>Productos:</Title>
+                <ListProducts
+                  categorySelected={categorySelected} handleProductSelected={handleProductSelected} /></div>
+              : <div>
+                <div style={{ minHeight: '25px' }}>
+                </div>
+                <Title>Categorias:</Title>
+                <ListCategories handleCategorySelected={handleSelected} /></div>}
           </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', padding: '20px' }}>
+
+            <ul style={{ minHeight: '300px', maxHeight: '300px', overflowY: 'scroll', paddingTop: '15px' }}>
+              {productsSelected?.map(res =>
+                <li key={res.name}
+                  style={{ display: 'flex', gap: '5px' }}>
+                  <span>X{res?.cantidad}</span>
+                  <span>{res.name}</span></li>)}
+            </ul>
+
+            <div>
+              <span>Total:</span>
+              <span>${productsSelected?.reduce((a, e) => a + e.price, 0)}</span>
+
+            </div>
+
+            <div>
+              <div>
+                <input type="text" placeholder='Comentario...' value={comment} onChange={handleChangeComment} />
+              </div>
+              <div>
+                <button onClick={() => handleCancelOrder()}>Cancelar</button>
+                <button onClick={() => handleSendOrder()}>Enviar</button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
 
     </ContentAdd>
   )

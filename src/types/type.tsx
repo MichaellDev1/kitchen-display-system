@@ -3,6 +3,7 @@ export interface ProductInterface {
     category: string
     price: number
     cantidad: number
+    terminate: boolean
 }
 
 export interface Order {

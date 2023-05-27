@@ -42,6 +42,90 @@ background: ${props => props.isCancel ? "#b6b9b6" : props.time > 1400 ? '#5dc56f
     align-items: center;
     justify-content: center;
     height: 35px;
-    border-radius: 10px;
+    border-radius: 2px;
 `
-export { CardElement, CardHeader, ContentMesas }
+
+const ButtonCancelOrder = styled.button`
+flex-grow: 1;
+cursor: pointer;
+padding: 11px;
+border: none;
+background: #5d8fff;
+color: #fff;
+font-weight: 600;
+font-size: 13px;
+`
+
+const ButtonCancel = styled.button <{ isCancel: boolean }> `
+flex-grow: 1;
+cursor: pointer;
+padding: 10px;
+color: ${props => props.isCancel ? '#726161' : '#fff'};
+background: ${props => props.isCancel ? '#e1e1e1' : '#fb7d7d'};
+border: none;
+font-weight: 600;
+`
+
+const ContentButtonsCard = styled.div`
+  width: 100%;
+  display: flex;
+  justifyItems: center;
+  justify-content: center;
+  gap: 20px;
+`
+
+const ContentButtons = styled.div`
+  padding: 20px;
+  .content-comment {
+    min-height: 25px;
+  }
+`
+
+const CommentOrCancel = styled.span`
+  color: #ff6464; 
+  text-transform: capitalize;
+  font-size: 15px; 
+  font-weight: 500;
+`
+
+const ContentProductOrder = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 250px;
+  max-height: 250px;
+  overflow-y: scroll;
+  margin-top: 10px;
+`
+
+const CardProduct = styled.div`
+  display: flex;
+  width: 100%; 
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+`
+
+const TextProductThrough = styled.div<{ productOrder: boolean }>`
+   display: flex;
+   gap: 10px;
+   width: 100%;
+   justify-content: space-between;
+   text-decoration: ${props => props.productOrder ? 'line-through' : 'none'};
+   .name-product {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 500;
+   }
+   .cantidad-product { 
+    font-size: 17px; 
+    font-weight: 500; 
+    color: #70e570; }
+`
+
+const ListProduct = styled.li`
+  list-style: none;
+`
+
+export { CardElement, CardHeader, ContentMesas, ButtonCancel, ButtonCancelOrder, CardProduct, CommentOrCancel, ContentButtons, TextProductThrough, ContentButtonsCard, ContentProductOrder, ListProduct }

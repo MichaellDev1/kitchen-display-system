@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from 'styled-components'
 
 const listProducts = [
     {
@@ -39,7 +40,6 @@ const listProducts = [
 ]
 
 interface Props {
-    setSelected: React.Dispatch<React.SetStateAction<string | null>>
     categorySelected: string
     handleProductSelected: Function
 }
@@ -50,7 +50,24 @@ interface Filter {
     price: number;
 }
 
-export default function ListProducts({ categorySelected, setSelected, handleProductSelected }: Props) {
+const ListProductElement = styled.li`
+font-size: 20px;
+font-weight: 400;
+color: #bbbbbb;
+font-weight: 400;
+list-style: none;
+cursor: pointer;
+text-transform: capitalize;
+user-select: none; 
+`
+const ContentProduct = styled.ul`
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-top: 10px;
+`
+
+export default function ListProducts({ categorySelected, handleProductSelected }: Props) {
     const [products, setProducts] = useState<Filter[]>()
 
     useEffect(() => {
@@ -58,8 +75,9 @@ export default function ListProducts({ categorySelected, setSelected, handleProd
         setProducts(filterProduct)
     }, [categorySelected])
 
-    return <div>
-        <button onClick={() => setSelected(null)}>Regresar</button>
-        {products?.map(res => <li key={res.name} onClick={() => handleProductSelected(res)}>{res.name}</li>)}
+    return <div style={{ minHeight: '340px', maxHeight: '340px', overflowY: 'scroll' }}>
+        <ContentProduct>
+            {products?.map(res => <ListProductElement key={res.name} onClick={() => handleProductSelected(res)}>{res.name}</ListProductElement>)}
+        </ContentProduct>
     </div>
 }

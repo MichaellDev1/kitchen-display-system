@@ -7,6 +7,22 @@ body {
   background-color: var(--bg-color);
 }
 
+ul::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 8px;
+}
+
+ul::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+ul::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background-color: rgb(202, 202, 202);
+  border-radius: 20px;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -14,17 +30,4 @@ body {
   box-sizing: border-box;
   outline: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-ul::-webkit-scrollbar {
-  width: 8px;               /* width of the entire scrollbar */
-}
-
-ul::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-ul::-webkit-scrollbar-thumb {
-  background-color: rgb(202, 202, 202);
-  border-radius: 20px;
 }
