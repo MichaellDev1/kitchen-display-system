@@ -3,17 +3,19 @@ import { styled } from 'styled-components'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
 
 const ButtonBackElement = styled.button`
-cursor: pointer;
-background: none;
-border: none;
-font-size: 16px;
-background: #f1f1f1;
-padding: 8px 0;
-background: #fff;
-padding: 10px 15px;
-font-weight: 400;
-color: var(--text-color);
-
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 16px;
+  background: #f1f1f1;
+  padding: 8px 0;
+  background: #fff;
+  padding: 10px 15px;
+  font-weight: 400;
+  color: var(--text-color);
+  &:hover {
+      background: #e9e9e9;
+  }
 `
 export default function ButtonBack({ path = '/' }) {
     const navigate = useNavigate()

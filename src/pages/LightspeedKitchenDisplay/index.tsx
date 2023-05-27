@@ -47,7 +47,7 @@ export default function LightspeedKitchenDisplay() {
     dispath(updateProductOrder({ state, inx, order }))
 
   return <ContentDisplay>
-    <div style={{ width: '100%', display: 'flex', justifyContent: 'start', position: 'relative' }}>
+    <div className='top-buttons'>
       {
         showFilter && <MenuFilter handleFilter={handleFilter} />
 

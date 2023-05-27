@@ -15,6 +15,9 @@ const ButtonFilter = styled.button`
     font-size: 16px;
     font-weight: 400;
    }
+   &:hover {
+    background: #e9e9e9;
+  }
 `
 
 
@@ -29,6 +32,12 @@ const ContentDisplay = styled.div`
   }
   flex-direction: column;
   flex-wrap: wrap;
+  .top-buttons { 
+    width: 100%; 
+    display: flex; 
+    justify-content: start;
+    position: relative;
+  }
 `
 
 const ContentAllOrder = styled.ul`

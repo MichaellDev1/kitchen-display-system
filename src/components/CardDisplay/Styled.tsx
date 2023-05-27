@@ -49,10 +49,14 @@ const ButtonCancelOrder = styled.button`
   cursor: pointer;
   padding: 11px;
   border: none;
-  background: #5d8fff;
+  background: #7daffb;
   color: #fff;
   font-weight: 600;
   font-size: 13px;
+  &:hover {
+    transition: background-color .2s;
+    background: #a8cbff;
+  }
 `
 
 const ButtonCancel = styled.button <{ iscancel: string }> `
@@ -63,6 +67,10 @@ const ButtonCancel = styled.button <{ iscancel: string }> `
   background: ${props => props.iscancel == 'true' ? '#e1e1e1' : '#fb7d7d'};
   border: none;
   font-weight: 600;
+  &:hover {
+    transition: background-color .2s;
+    background: #ffaeae;
+  }
 `
 
 const ContentButtonsCard = styled.div`

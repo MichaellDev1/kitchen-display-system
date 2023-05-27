@@ -46,8 +46,9 @@ const BtnCancel = styled.button`
   font-weight: 600;
   font-size: 13px;
   border-radius: 5px;
-  :hover {
-    background: red;
+  &:hover {
+    background: #a8cbff;
+    transition: background-color .2s;
     color: #fff;
   }
 `
@@ -57,15 +58,16 @@ const BtnSend = styled.button`
   cursor: pointer;
   padding: 11px;
   border: none;
-  color: #5d8fff;
+  color: #7daffb;
   font-weight: 600;
-  border: 1px solid #5d8fff;
+  border: 1px solid #7daffb;
   border-radius: 5px;
   background: #fff;
   font-weight: 600;
   font-size: 13px;
-  :hover {
-    background: #5d8fff;
+  &:hover {
+    background: #7daffb;
+    transition: background-color .2s;
     color: #fff;
   }
 `

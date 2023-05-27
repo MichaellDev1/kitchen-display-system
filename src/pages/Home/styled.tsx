@@ -37,6 +37,10 @@ const Links = styled.a<{ bgk?: string }>`
   box-shadow: 3px 3px 20px rgba(0 0 0 / 2%);
   font-size: 19px;
   background: #fff;
+  &:hover {
+    transition: box-shadow .2s;
+    box-shadow: 3px 3px 25px rgba(0 0 0 / 10%);
+  }
 `
 
 const ContentLinks = styled.div`
