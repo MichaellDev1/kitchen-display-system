@@ -1,7 +1,7 @@
 import { styled } from "styled-components"
 
 const ListCategoryList = styled.li`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   color: var(--text-product);
   font-weight: 400;
@@ -13,7 +13,7 @@ const ListCategoryList = styled.li`
 const ContentCategory = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   list-style: none;
   margin-top: 10px;
 `

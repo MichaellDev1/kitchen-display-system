@@ -1,6 +1,6 @@
 import { Container, ContentCategory, ListCategoryList } from './styled'
 
-const categories = ['desayunos', 'entradas', 'platos', 'bebidas']
+const categories = ['desayunos', 'cena', 'postre', 'bebidas']
 
 interface Props {
   handleCategorySelected: Function

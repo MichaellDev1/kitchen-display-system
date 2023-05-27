@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
 :root {
   --text-color: #363537;
   --bg-color: #F5F5F5;
@@ -24,11 +27,17 @@ div::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
 * {
   padding: 0;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
   outline: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

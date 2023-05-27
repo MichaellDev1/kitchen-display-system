@@ -6,8 +6,8 @@ import { GiHotMeal } from 'react-icons/gi'
 export default function Home() {
   return <Content>
     <h1 className='title'>
-      <span>Kitchen Display System</span>
-      <span>Seleccione su rol</span>
+      <span className='name-app'>Kitchen Display System</span>
+      <span className='rol'>Seleccione su rol</span>
     </h1>
     <ContentLinks>
 
@@ -17,7 +17,7 @@ export default function Home() {
         </ContentIcon>
         <span>Camarero</span>
       </Links>
-      
+
       <Links href='/display'>
         <ContentIcon>
           <TbChefHat />

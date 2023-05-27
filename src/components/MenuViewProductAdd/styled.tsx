@@ -46,6 +46,10 @@ const BtnCancel = styled.button`
   font-weight: 600;
   font-size: 13px;
   border-radius: 5px;
+  :hover {
+    background: red;
+    color: #fff;
+  }
 `
 
 const BtnSend = styled.button`
@@ -57,29 +61,34 @@ const BtnSend = styled.button`
   font-weight: 600;
   border: 1px solid #5d8fff;
   border-radius: 5px;
+  background: #fff;
   font-weight: 600;
   font-size: 13px;
+  :hover {
+    background: #5d8fff;
+    color: #fff;
+  }
 `
 
 const ListAddProduct = styled.li`
-    font-weight: 400;
-    display: flex;
-    gap: 5px;
-    color: #202020;
-    font-size: 19px;
-    color: var(--text-product);
-    list-style: none;
+  font-weight: 400;
+  display: flex;
+  gap: 5px;
+  color: #202020;
+  font-size: 16px;
+  color: var(--text-product);
+  list-style: none;
 `
 const InputCommnet = styled.input`
-font-size: 15px;
-padding: 10px 10px;
-width: 100%;
-border-radius: 3px;
-border: none;
-color: #707070;
-background: #dfdfdf;
-::placeholder {
-  color: red;
+  font-size: 15px;
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 3px;
+  border: none;
+  color: #707070;
+  background: #ebebeb;
+  ::placeholder {
+    color: red;
 }
 `
 

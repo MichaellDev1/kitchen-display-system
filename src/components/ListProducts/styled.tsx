@@ -1,7 +1,7 @@
 import { styled } from "styled-components"
 
 const ListProductElement = styled.li`
-font-size: 20px;
+font-size: 18px;
 font-weight: 400;
 color: var(--text-product);
 font-weight: 400;
@@ -13,7 +13,7 @@ user-select: none;
 const ContentProduct = styled.ul`
 display: flex;
 flex-direction: column;
-gap: 10px;
+gap: 15px;
 margin-top: 10px;
 `
 

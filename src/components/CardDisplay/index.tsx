@@ -1,11 +1,11 @@
-import { Order } from '../../types/type'
-
-import React, { useCallback, useEffect, useState } from 'react'
+import { CardElement, CardHeader, ContentMesas, ButtonCancel, ButtonCancelOrder, CardProduct, CommentOrCancel, ContentButtons, ContentButtonsCard, ContentProductOrder, ListProduct, TextProductThrough, ContentIdTime } from './Styled'
 
 import { cancelOrder, updateState } from '../../redux/orderSlice'
 import { useDispatch } from 'react-redux'
 
-import { CardElement, CardHeader, ContentMesas, ButtonCancel, ButtonCancelOrder, CardProduct, CommentOrCancel, ContentButtons, ContentButtonsCard, ContentProductOrder, ListProduct, TextProductThrough } from './Styled'
+import { Order } from '../../types/type'
+import React, { useCallback, useEffect, useState } from 'react'
+
 
 interface Props {
   handleDelete: Function,
@@ -13,16 +13,21 @@ interface Props {
   handleStateProduct: Function
 }
 
+
 function CardDisplay({ product, handleDelete, handleStateProduct }: Props) {
   const [time, setTime] = useState(1500);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(time => time - 1);
-    }, 1000);
+    if (product.state !== 'pending') {
+      const interval = setInterval(() => {
+        setTime(time => time - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [product.state]);
 
-    return () => clearInterval(interval);
-  }, []);
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
 
   const dispath = useDispatch()
 
@@ -36,16 +41,16 @@ function CardDisplay({ product, handleDelete, handleStateProduct }: Props) {
     dispath(cancelOrder(id))
   }, [])
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
 
   return <CardElement>
-    <CardHeader time={time} onClick={() => handleDelete(product.order)} isCancel={product.canceled}>
-      <ContentMesas time={time} isCancel={product.canceled}>{product.mesa}</ContentMesas>
-      <div>
-        <span style={{ textTransform: 'uppercase' }}>#{product.order.slice(0, 13)}</span>
-        <span>Served by hidden</span>
-      </div>
+    <CardHeader time={time} onClick={() => handleDelete(product.order)} iscancel={product.canceled.toString()}>
+      <ContentMesas time={time} iscancel={product.canceled.toString()}>{product.mesa}</ContentMesas>
+      <ContentIdTime>
+        <span className='id-order'>#{product.order.slice(0, 13)}</span>
+        <div>
+          <p className='time'>{`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}</p>
+        </div>
+      </ContentIdTime>
     </CardHeader>
 
     <ContentProductOrder>
@@ -54,7 +59,7 @@ function CardDisplay({ product, handleDelete, handleStateProduct }: Props) {
         <ListProduct onClick={() => handleStateProduct(productOrder.terminate, inx, product.order)} key={productOrder?.name}>
 
           <CardProduct>
-            <TextProductThrough productOrder={productOrder.terminate}>
+            <TextProductThrough productorder={productOrder.terminate.toString()}>
               <div>
                 <h4 className='name-product'>{productOrder.name}</h4>
               </div>
@@ -79,7 +84,7 @@ function CardDisplay({ product, handleDelete, handleStateProduct }: Props) {
 
       <ContentButtonsCard>
 
-        <ButtonCancel isCancel={product.canceled} onClick={() => handleCancel(product.order)}>
+        <ButtonCancel iscancel={product.canceled.toString()} onClick={() => handleCancel(product.order)}>
           {product.canceled ? 'Reactivar pedido' : 'Cancelar pedido'}
         </ButtonCancel>
 
@@ -97,8 +102,3 @@ function CardDisplay({ product, handleDelete, handleStateProduct }: Props) {
 }
 
 export default React.memo(CardDisplay)
-
-//Implementacion del time:
-{/* <div>
-            <p>{`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}</p>
-</div> */}

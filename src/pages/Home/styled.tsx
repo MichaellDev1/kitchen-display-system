@@ -14,7 +14,13 @@ const Content = styled.main`
     text-align: center; margin-bottom: 50px;
     font-size: 22px;
     font-weight: 600;
-    line-height: 25px; 
+    line-height: 29px; 
+}
+.name-app {
+  font-size: 28px;
+}
+.rol {
+  font-weight: 300;
 }
 `
 
@@ -43,6 +49,6 @@ const ContentLinks = styled.div`
 
 const ContentIcon = styled.span`
   font-size: 40px;
-  color: var(--text-color);
+  color: #81aedd;
 `
 export { Content, ContentIcon, ContentLinks, Links }
