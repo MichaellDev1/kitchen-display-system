@@ -17,14 +17,6 @@ export interface Order {
     waiter: string
 }
 
-export interface ORdes {
-    mesa: number,
-    order: string,
-    products: Array<ProductInterface>
-    state: string
-    canceled: boolean
-}
-
 export interface Initial {
     ordes: Order[] | []
 }

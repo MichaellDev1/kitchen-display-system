@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
 
-
 const ButtonBackElement = styled.button`
 cursor: pointer;
 background: none;
@@ -18,5 +17,9 @@ color: var(--text-color);
 `
 export default function ButtonBack({ path = '/' }) {
     const navigate = useNavigate()
-    return <ButtonBackElement onClick={() => navigate(path)}><HiArrowNarrowLeft /></ButtonBackElement>
+    return (
+        <ButtonBackElement onClick={() => navigate(path)}>
+            <HiArrowNarrowLeft />
+        </ButtonBackElement>
+    )
 }

@@ -1,41 +1,19 @@
-import styled from 'styled-components'
-import CardDisplay from '../../components/CardDisplay'
-import { useSelector } from 'react-redux'
-import { addAllOrder, deleteOrder, updateProductOrder } from '../../redux/orderSlice'
 import { useState } from 'react'
 import { Order } from '../../types/type'
+
 import useProductList from '../../hooks/useProductList'
-import { BsFilter } from 'react-icons/bs'
+
 import { useNavigate } from 'react-router-dom'
-import { FiPlus } from 'react-icons/fi'
+
+import { useSelector } from 'react-redux'
+import { addAllOrder, deleteOrder, updateProductOrder } from '../../redux/orderSlice'
+
+import CardDisplay from '../../components/CardDisplay'
 import ButtonBack from '../../components/ButtonBack'
+import { ButtonFilter, ContentDisplay, ContentAllOrder } from './styled'
 
-const ContentDisplay = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px 50px;
-  display: flex; 
-  gap: 20px;
-  flex-direction: column;
-  flex-wrap: wrap;
-`
-
-const buttonsFilter = [
-  {
-    label: 'Todos',
-    state: 'all',
-  },
-  {
-    label: 'pendinetes',
-    state: 'pending',
-  }, {
-    label: 'En proceso',
-    state: 'progress',
-  }, {
-    label: 'Terminados',
-    state: 'finished',
-  },
-]
+import { BsFilter } from 'react-icons/bs'
+import MenuFilter from '../../components/MenuFilter'
 
 interface ProductOrder {
   ordes: Order[]
@@ -44,49 +22,6 @@ interface ProductOrder {
 interface StateProduct {
   heandleOrder: ProductOrder
 }
-
-
-const ButtonFilter = styled.button`
-  background: #fff;
-  border: none;
-   font-size: 23px;
-   line-height: 1;
-   padding: 5px 10px;
-   cursor: pointer;
-   display: flex;
-   color: var(--text-color);
-   gap: 5px;
-   align-items: center;
-   span {
-    font-size: 16px;
-    font-weight: 400;
-   }
-`
-
-
-const ContentFilters = styled.div`
-   display: flex;
-   flex-direction: column;
-   position: absolute;
-   left: 190px;
-   box-shadow: 1px 10px 20px rgba(0 0 0 / 9%);
-   border-radius: 10px;
-   background: #fff;
-   padding: 20px 15px;
-   gap: 20px;
-   min-width: 240px;
-   button {
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 16px;
-    background: #f1f1f1;
-    padding: 8px 0; 
-    border-radius: 10px;
-    font-weight: 400;
-    color: var(--text-color);
-   }
-`
 
 export default function LightspeedKitchenDisplay() {
   const navigate = useNavigate()
@@ -114,9 +49,8 @@ export default function LightspeedKitchenDisplay() {
   return <ContentDisplay>
     <div style={{ width: '100%', display: 'flex', justifyContent: 'start', position: 'relative' }}>
       {
-        showFilter && <ContentFilters>
-          {buttonsFilter.map(({ label, state }) => <button key={label} onClick={() => handleFilter(state)}>{label}</button>)}
-        </ContentFilters>
+        showFilter && <MenuFilter handleFilter={handleFilter} />
+
       }
       <div style={{ display: 'flex', gap: '4px' }}>
         <ButtonBack path='/' />
@@ -124,13 +58,11 @@ export default function LightspeedKitchenDisplay() {
       </div>
     </div>
 
-    <ul style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'start' }}>
-
+    <ContentAllOrder>
       {products.ordes?.map(product =>
-        <li key={product.order} style={{ listStyle: 'none' }}>
+        <li key={product.order}>
           <CardDisplay product={product} handleStateProduct={handleStateProduct} handleDelete={handleDelete} />
         </li>)}
-
-    </ul>
+    </ContentAllOrder>
   </ContentDisplay>
 }
